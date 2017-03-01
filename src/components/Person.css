@@ -1,3 +1,6 @@
 .Person {
-  /*background: red;*/
+  border: 1px solid blue;
+  background: lightblue;
+
+  margin: 5px;
 }

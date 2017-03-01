@@ -5,31 +5,26 @@ class Person extends Component {
 
   constructor(props) {
     super(props);
-
-    this.state = { firstName: props.firstName, lastName: props.lastName };
-    console.log(this.state);
   }
 
-  handleClick = (e) => {
+
+  handleClick = e => {
     console.log(e);
   };
 
   render() {
-    const { firstName, lastName } = this.state;
+
+    const { firstName, lastName } = this.props.person;
 
     return (
       <div className="Person">
-        <h3 title={`${firstName} ${lastName}`} onClick={this.handleClick}>{firstName} {lastName}</h3>
-        <input type="text" placeholder="First Name" value={this.state.firstName} onChange={e => this.setState({ firstName: e.target.value})} />
-        <input type="text" placeholder="Last Name" value={this.state.lastName} onChange={e => this.setState({ lastName: e.target.value})} />
+        <h3 title={`${firstName} ${lastName}`} onClick={this.handleClick}>Person.js: {firstName} {lastName}</h3>
+        <input type="text" placeholder="First Name" value={firstName} onChange={e => this.props.stateChanged({firstName: e.target.value})}/>
+        <input type="text" placeholder="Last Name" value={lastName} onChange={e => this.props.stateChanged({lastName: e.target.value})}/>
+        <button onClick={e => this.props.stateChanged({ firstName: 'Bob', lastName: 'Saggot' })}>Name Change</button>
       </div>
     );
   }
 }
-
-Person.propTypes = {
-  firstName: PropTypes.string,
-  lastName: PropTypes.string
-};
 
 export default Person;
